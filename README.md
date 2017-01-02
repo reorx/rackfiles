@@ -1,6 +1,6 @@
 # Rackfiles
 
-A thin wrapper around Rackspace's `rack` cli.
+A thin wrapper around Rackspace's `rack` cli, makes file operations much easier.
 
 ## Installation
 
@@ -8,16 +8,16 @@ A thin wrapper around Rackspace's `rack` cli.
 
 1. List containers
 
-    rackfiles -l
+        rackfiles -l
 
 2. List files
 
-    rackfiles -c CONTAINER -l
+        rackfiles -c CONTAINER -l
 
 3. Upload a file
 
-    rackfiles -c CONTAINER -u FILE
+        rackfiles -c CONTAINER -u FILE
 
 4. Download a file
 
-    rackfiles -c CONTAINER -d FILE
+        rackfiles -c CONTAINER -d FILE
