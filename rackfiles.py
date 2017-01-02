@@ -31,6 +31,7 @@ def main():
                         help="list files for container, if no container is specified, list containers")
     parser.add_argument('-u', '--upload', type=str, help="upload file")
     parser.add_argument('-d', '--download', type=str, help="download file")
+    parser.add_argument('-D', '--delete', type=str, help="delete file")
     parser.add_argument('--debug', action='store_true',
                         help="debug mode")
 
@@ -76,6 +77,14 @@ def main():
             print 'Success!'
             run_cmd_display([
                 'ls', '-l', args.download,
+            ])
+        # delete
+        elif args.delete is not None:
+            print 'Deleting {}'.format(args.delete)
+            run_cmd_display([
+                'rack', 'files', 'object', 'delete',
+                '--container', args.container,
+                '--name', args.delete,
             ])
         else:
             quit_invalid_inputs()
