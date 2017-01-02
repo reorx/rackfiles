@@ -4,6 +4,8 @@ A thin wrapper around Rackspace's `rack` cli, makes file operations much easier.
 
 ## Installation
 
+    bash <(curl -s https://raw.githubusercontent.com/reorx/rackfiles/master/get-rackfiles.sh)
+
 ## Usage
 
 1. List containers
