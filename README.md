@@ -23,3 +23,7 @@ A thin wrapper around Rackspace's `rack` cli, makes file operations much easier.
 4. Download a file
 
         rackfiles -c CONTAINER -d FILE
+
+5. Delete a file
+
+        rackfiles -c CONTAINER -D FILE
