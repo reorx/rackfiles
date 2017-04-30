@@ -117,7 +117,7 @@ def run_cmd(cmd, shell=False):
 def run_cmd_display(cmd, **kwargs):
     rc, out, err = run_cmd(cmd, **kwargs)
     if rc != 0:
-        print 'Failed with {}, messages:\n{}\n{}'.format(rc, out, err)
+        quit('Failed with {}, messages:\n{}\n{}'.format(rc, out, err), rc)
     else:
         _out = out.strip()
         _err = err.strip()
