@@ -3,6 +3,7 @@
 
 import os
 import sys
+import shlex
 import logging
 import argparse
 import subprocess
@@ -15,6 +16,10 @@ if PY3:
 
 
 lg = logging.getLogger('rackfiles')
+
+
+class ENV:
+    extra_args = 'RACKFILES_EXTRA_ARGS'
 
 
 def main():
@@ -44,6 +49,10 @@ def main():
     else:
         logging.basicConfig(level=logging.INFO)
 
+    extra_args = os.environ.get(ENV.extra_args, [])
+    if extra_args:
+        extra_args = shlex.split(extra_args)
+
     # logics
     if args.container:
         # list files
@@ -52,7 +61,7 @@ def main():
             run_cmd_display([
                 'rack', 'files', 'object', 'list',
                 '--container', args.container,
-            ])
+            ] + extra_args)
         # upload
         elif args.upload is not None:
             fpath, fname = parse_file_path(args.upload)
@@ -62,7 +71,7 @@ def main():
                 '--container', args.container,
                 '--file', fpath,
                 '--name', fname,
-            ])
+            ] + extra_args)
         # download
         elif args.download is not None:
             if os.path.exists(args.download):
@@ -73,7 +82,7 @@ def main():
                 '--container', args.container,
                 '--name', args.download,
                 '>', args.download,
-            ], shell=True)
+            ] + extra_args, shell=True)
             print 'Success!'
             run_cmd_display([
                 'ls', '-l', args.download,
@@ -85,7 +94,7 @@ def main():
                 'rack', 'files', 'object', 'delete',
                 '--container', args.container,
                 '--name', args.delete,
-            ])
+            ] + extra_args)
         else:
             quit_invalid_inputs()
     else:
@@ -94,7 +103,7 @@ def main():
             print 'List containers:'
             run_cmd_display([
                 'rack', 'files', 'container', 'list',
-            ], shell=True)
+            ] + extra_args, shell=True)
         else:
             quit_invalid_inputs()
 
