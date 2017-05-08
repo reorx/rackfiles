@@ -9,6 +9,9 @@ import argparse
 import subprocess
 
 
+__version__ = '0.2.0'
+
+
 PY3 = sys.version_info >= (3,)
 
 if PY3:
@@ -27,6 +30,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="",
         epilog="",
+        prog='rackfiles',
         formatter_class=argparse.RawDescriptionHelpFormatter)
 
     # options
@@ -39,6 +43,10 @@ def main():
     parser.add_argument('-D', '--delete', type=str, help="delete file")
     parser.add_argument('--debug', action='store_true',
                         help="debug mode")
+
+    # --version
+    parser.add_argument('--version', action='version',
+                        version='%(prog)s {version}'.format(version=__version__))
 
     args = parser.parse_args()
 
