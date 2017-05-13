@@ -65,7 +65,7 @@ def main():
     if args.container:
         # list files
         if args.list:
-            print 'List files:'
+            print('List files:')
             run_cmd_display([
                 'rack', 'files', 'object', 'list',
                 '--container', args.container,
@@ -73,7 +73,7 @@ def main():
         # upload
         elif args.upload is not None:
             fpath, fname = parse_file_path(args.upload)
-            print 'Uploading {}'.format(args.upload)
+            print('Uploading {}'.format(args.upload))
             run_cmd_display([
                 'rack', 'files', 'object', 'upload',
                 '--container', args.container,
@@ -83,21 +83,21 @@ def main():
         # download
         elif args.download is not None:
             if os.path.exists(args.download):
-                print 'Warning: will overwrite the file `{}`'.format(args.download)
-            print 'Downloading {}'.format(args.download)
+                print('Warning: will overwrite the file `{}`'.format(args.download))
+            print('Downloading {}'.format(args.download))
             run_cmd_display([
                 'rack', 'files', 'object', 'download',
                 '--container', args.container,
                 '--name', args.download,
                 '>', args.download,
             ] + extra_args, shell=True)
-            print 'Success!'
+            print('Success!')
             run_cmd_display([
                 'ls', '-l', args.download,
             ])
         # delete
         elif args.delete is not None:
-            print 'Deleting {}'.format(args.delete)
+            print('Deleting {}'.format(args.delete))
             run_cmd_display([
                 'rack', 'files', 'object', 'delete',
                 '--container', args.container,
@@ -108,7 +108,7 @@ def main():
     else:
         # list containers
         if args.list:
-            print 'List containers:'
+            print('List containers:')
             run_cmd_display([
                 'rack', 'files', 'container', 'list',
             ] + extra_args, shell=True)
@@ -139,9 +139,9 @@ def run_cmd_display(cmd, **kwargs):
         _out = out.strip()
         _err = err.strip()
         if _out:
-            print _out
+            print(_out)
         if _err:
-            print _err
+            print(_err)
 
 
 def quit(s, code=0):
