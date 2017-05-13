@@ -9,13 +9,10 @@ import argparse
 import subprocess
 
 
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 
 PY3 = sys.version_info >= (3,)
-
-if PY3:
-    xrange = range
 
 
 lg = logging.getLogger('rackfiles')
