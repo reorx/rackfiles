@@ -37,6 +37,7 @@ def main():
                         help="list files for container, if no container is specified, list containers")
     parser.add_argument('-u', '--upload', type=str, help="upload file")
     parser.add_argument('-d', '--download', type=str, help="download file")
+    parser.add_argument('-r', '--region', type=str, default="DFW", help="rack files region, default DFW")
     parser.add_argument('-D', '--delete', type=str, help="delete file")
     parser.add_argument('--debug', action='store_true',
                         help="debug mode")
@@ -57,6 +58,8 @@ def main():
     extra_args = os.environ.get(ENV.extra_args, [])
     if extra_args:
         extra_args = shlex.split(extra_args)
+    if args.region:
+        extra_args += ['--region', args.region]
 
     # logics
     if args.container:
